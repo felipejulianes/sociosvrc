@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaña de Embajadores - Virreyes Rugby Club</title>
+    <style>
+        /* Estilos (los mismos de la versión anterior) */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 90%;
+            margin: 20px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #2B9042;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .campaign-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            object-fit: cover;
+        }
+
+        .description {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .donation-button {
+            background-color: #2B9042;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 15px 20px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            flex: 1 1 200px;
+            min-width: 150px;
+        }
+
+        .donation-button:hover {
+            background-color: #227335;
+            transform: translateY(-2px);
+        }
+        
+        .donation-button.disabled {
+            background-color: #999;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .club-logo {
+            max-width: 120px;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            color: #D8000C;
+            background-color: #FFD2D2;
+            border: 1px solid #D8000C;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em;
+            }
+            .donation-button {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- El título se generará con JavaScript -->
+        <h1 id="campaign-title">Sumate como socio solidario</h1>
+
+        <!-- Imagen principal (nombre de archivo fijo) -->
+        <img src="VRC Foto Vieja.jpg" 
+             alt="Jóvenes jugando al rugby en Virreyes Rugby Club" 
+             class="campaign-image">
+
+        <p class="description">
+            Hacé posible que un joven siga disfrutando del rugby. Con tu aporte ayudás a cubrir parte de la cuota de quien hoy no puede afrontarla y promovés su formación deportiva y personal.
+        </p>
+        
+        <!-- Mensaje de error (oculto por defecto) -->
+        <div id="error-container" style="display: none;"></div>
+
+        <!-- Botones de donación (los links se agregarán con JavaScript) -->
+        <div class="button-container">
+            <a id="link1" href="#" class="donation-button">$20.000</a>
+            <a id="link2" href="#" class="donation-button">$40.000</a>
+            <a id="link3" href="#" class="donation-button">$60.000</a>
+            <a id="link4" href="#" class="donation-button">Aporte libre</a>
+        </div>
+
+        <!-- Logo del club (nombre de archivo fijo) -->
+        <img src="logo vrc.png" 
+             alt="Logo de VRC" 
+             class="club-logo">
+    </div>
+
+    <script>
+        // Esta función se ejecuta cuando el contenido de la página se ha cargado
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Obtener el ID del embajador desde la URL
+            const params = new URLSearchParams(window.location.search);
+            const embajadorId = params.get('embajador'); // Buscamos un parámetro como "?embajador=marcos"
+
+            // Elementos del DOM que vamos a modificar
+            const campaignTitle = document.getElementById('campaign-title');
+            const errorContainer = document.getElementById('error-container');
+            const buttons = [
+                document.getElementById('link1'),
+                document.getElementById('link2'),
+                document.getElementById('link3'),
+                document.getElementById('link4')
+            ];
+
+            // Función para deshabilitar los botones si no se encuentra la campaña
+            const disableButtons = (message) => {
+                campaignTitle.textContent = 'Campaña no encontrada';
+                errorContainer.innerHTML = `<p class="error-message">${message}</p>`;
+                errorContainer.style.display = 'block';
+                buttons.forEach(button => button.classList.add('disabled'));
+            };
+            
+            if (!embajadorId) {
+                disableButtons('Por favor, accedé a través del link de tu embajador.');
+                return; // Detiene la ejecución si no hay ID en la URL
+            }
+
+            // 2. Cargar el archivo JSON con los datos de las campañas
+            fetch('campaigns.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('No se pudo cargar el archivo campaigns.json');
+                    }
+                    return response.json();
+                })
+                .then(campaigns => {
+                    // 3. Buscar la campaña correspondiente al ID de la URL
+                    const campaign = campaigns.find(c => c.id === embajadorId.toLowerCase());
+
+                    if (campaign) {
+                        // 4. Si se encuentra la campaña, actualizar la página
+                        campaignTitle.textContent = `Sumate a la campaña de ${campaign.nombre}`;
+                        
+                        // Asignar los links a cada botón
+                        buttons[0].href = campaign.links[0];
+                        buttons[1].href = campaign.links[1];
+                        buttons[2].href = campaign.links[2];
+                        buttons[3].href = campaign.links[3];
+
+                    } else {
+                        // 5. Si no se encuentra, mostrar un mensaje de error
+                        disableButtons(`El embajador "${embajadorId}" no existe. Verificá el link.`);
+                    }
+                })
+                .catch(error => {
+                    // Manejar errores (ej: el archivo JSON no existe o tiene un formato incorrecto)
+                    console.error('Error al cargar las campañas:', error);
+                    disableButtons('Ocurrió un error al cargar la información de la campaña.');
+                });
+        });
+    </script>
+
+</body>
+</html>
