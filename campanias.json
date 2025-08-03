@@ -1,4 +1,13 @@
 {
+ "general": {
+    "nombre": "General",
+    "links": [
+      { "monto": "$20.000", "url": "https://mpago.la/general20000" },
+      { "monto": "$40.000", "url": "https://mpago.la/general40000" },
+      { "monto": "$60.000", "url": "https://mpago.la/general60000" },
+      { "monto": "Aporte libre", "url": "https://mpago.la/generallibre" }
+    ]
+  },
   "marcos": {
     "nombre": "Marcos",
     "links": [
