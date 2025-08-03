@@ -2,19 +2,19 @@
   "marcos": {
     "nombre": "Marcos",
     "links": [
-      { "monto": "$20.000", "url": "https://mpago.la/marcos20000" },
-      { "monto": "$40.000", "url": "https://mpago.la/marcos40000" },
+      { "monto": "$20.000", "url": "https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=3e7c560d62804fd29bc355b9096b186f" },
+      { "monto": "$15.000", "url": "https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=3edf23beb4ac42b7b18d83e45c21eca7" },
       { "monto": "$60.000", "url": "https://mpago.la/marcos60000" },
       { "monto": "Aporte libre", "url": "https://mpago.la/marcoslibre" }
     ]
   },
   "jorge": {
-    "nombre": "Jorge",
+    "nombre": "Felipe",
     "links": [
-      { "monto": "$20.000", "url": "https://mpago.la/jorge20000" },
-      { "monto": "$40.000", "url": "https://mpago.la/jorge40000" },
-      { "monto": "$60.000", "url": "https://mpago.la/jorge60000" },
-      { "monto": "Aporte libre", "url": "https://mpago.la/jorgelibre" }
+      { "monto": "$15.000", "url": "https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=8f16a0eceadd46499830d5dbfe32d5a0" },
+      { "monto": "$16.000", "url": "https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=3edf23beb4ac42b7b18d83e45c21eca7" },
+      { "monto": "$20.000", "url": "https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2c5e114b8e9a45c38aab4976fa1ef948" },
+      { "monto": "Aporte libre", "url": "https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=cf4c3778ee6942aea7f4333bde705f61" }
     ]
   }
 }
