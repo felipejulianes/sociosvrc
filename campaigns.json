@@ -1,0 +1,32 @@
+[
+  {
+    "id": "marcos",
+    "nombre": "Marcos",
+    "links": [
+      "https://link.mercadopago.com.ar/marcos-20000",
+      "https://link.mercadopago.com.ar/marcos-40000",
+      "https://link.mercadopago.com.ar/marcos-60000",
+      "https://link.mercadopago.com.ar/marcos-libre"
+    ]
+  },
+  {
+    "id": "jorge",
+    "nombre": "Jorge",
+    "links": [
+      "https://link.mercadopago.com.ar/jorge-20000",
+      "https://link.mercadopago.com.ar/jorge-40000",
+      "https://link.mercadopago.com.ar/jorge-60000",
+      "https://link.mercadopago.com.ar/jorge-libre"
+    ]
+  },
+  {
+    "id": "lucas",
+    "nombre": "Lucas",
+    "links": [
+      "https://link.mercadopago.com.ar/lucas-20000",
+      "https://link.mercadopago.com.ar/lucas-40000",
+      "https://link.mercadopago.com.ar/lucas-60000",
+      "https://link.mercadopago.com.ar/lucas-libre"
+    ]
+  }
+]
