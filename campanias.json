@@ -8,7 +8,7 @@
       { "monto": "Aporte libre", "url": "https://mpago.la/marcoslibre" }
     ]
   },
-  "jorge": {
+  "felipe": {
     "nombre": "Felipe",
     "links": [
       { "monto": "$15.000", "url": "https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=8f16a0eceadd46499830d5dbfe32d5a0" },
