@@ -101,7 +101,7 @@
   <script>
     function getEmbajadorFromURL() {
       const params = new URLSearchParams(window.location.search);
-      return params.get("embajador");
+      return params.get("embajador") || "general";
     }
 
     async function cargarCampania() {
@@ -109,17 +109,15 @@
       const errorDiv = document.getElementById("error");
       const botonesDiv = document.getElementById("botones");
 
-      try {
-        const response = await fetch("campanias.json");
-        const data = await response.json();
+    try {
+      const response = await fetch("campanias.json");
+      const data = await response.json();
 
-        if (!data[embajador]) {
-          errorDiv.textContent = "Embajador no encontrado.";
-          return;
-        }
+      // Si el embajador no existe, usar "general"
+      const clave = data[embajador] ? embajador : "general";
+      const campania = data[clave];
 
-        const campania = data[embajador];
-        botonesDiv.innerHTML = "";
+      botonesDiv.innerHTML = "";
 
         campania.links.forEach(link => {
           const a = document.createElement("a");
@@ -129,6 +127,11 @@
           a.target = "_blank";
           botonesDiv.appendChild(a);
         });
+
+      if (!data[embajador]) {
+        console.warn(`Embajador '${embajador}' no encontrado. Mostrando campaña general.`);
+      }
+      
       } catch (error) {
         errorDiv.textContent = "Error cargando la campaña.";
         console.error(error);
