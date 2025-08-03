@@ -1,0 +1,20 @@
+{
+  "marcos": {
+    "nombre": "Marcos",
+    "links": [
+      { "monto": "$20.000", "url": "https://mpago.la/marcos20000" },
+      { "monto": "$40.000", "url": "https://mpago.la/marcos40000" },
+      { "monto": "$60.000", "url": "https://mpago.la/marcos60000" },
+      { "monto": "Aporte libre", "url": "https://mpago.la/marcoslibre" }
+    ]
+  },
+  "jorge": {
+    "nombre": "Jorge",
+    "links": [
+      { "monto": "$20.000", "url": "https://mpago.la/jorge20000" },
+      { "monto": "$40.000", "url": "https://mpago.la/jorge40000" },
+      { "monto": "$60.000", "url": "https://mpago.la/jorge60000" },
+      { "monto": "Aporte libre", "url": "https://mpago.la/jorgelibre" }
+    ]
+  }
+}
